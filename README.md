@@ -48,7 +48,7 @@ var translatedMessage = __('someNamespace.optionalSubNamespace.yourMessage', {me
 var anotherMessage = __('someNamespace.optionalSubNamespace.anUntranslatedMessage');
 ```
 
-Questions
----------
+Questions and Feature Requests
+------------------------------
 
-Please write to jerico.dev@gmail.com.
+If you have feature requests or other feedback please write to jerico.dev@gmail.com.
