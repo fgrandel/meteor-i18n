@@ -2,8 +2,8 @@
   "name": "i18n",
   "description": "A simple i18n package: Call __('...') to translate your message everywhere.",
   "homepage": "https://github.com/jerico-dev/meteor-i18n",
-  "author": "Florian Grandel <jerico.dev@gmail.com>",
-  "version": "0.0.3",
+  "author": "Florian Grandel(https://github.com/jerico-dev)",
+  "version": "0.0.4",
   "git": "https://github.com/jerico-dev/meteor-i18n.git",
   "packages": { }
 }
