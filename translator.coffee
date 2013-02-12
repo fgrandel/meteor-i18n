@@ -90,15 +90,6 @@ Meteor.i18nMessages =
       unknownMessageFormat:
         'Translation error: Unknown message format for "{{messageId}}".'
 
-    log:
-      error:
-        en: 'Error: {{msg}}'
-        de: 'Fehler: {{msg}}'
-      info: 'Info: {{msg}}'
-      warning:
-        en: 'Warning: {{msg}}'
-        de: 'Vorsicht: {{msg}}'
-
 
 # Global shortcut for the translation method.
 root = exports ? this
