@@ -24,12 +24,12 @@
         while (messageParts.length) {
           messages = messages[messageParts.shift()];
           if (!_.isObject(messages)) {
-            throw Error('services.translator.missingMessageNamespace');
+            throw Error('_meteor.translator.missingMessageNamespace');
           }
         }
         message = messages[messageId];
         if (message == null) {
-          throw Error('services.translator.missingMessage');
+          throw Error('_meteor.translator.missingMessage');
         }
         if (_.isString(message)) {
           return message;
@@ -46,7 +46,7 @@
         if (_.isString(message != null ? message["default"] : void 0)) {
           return message["default"];
         }
-        throw Error('services.translator.unknownMessageFormat');
+        throw Error('_meteor.translator.unknownMessageFormat');
       };
       this.translate = function(messageId, params) {
         var errorMessage, errorMessageId, message;
@@ -100,12 +100,14 @@
     Meteor.i18nMessages = {};
   }
 
-  Meteor.i18nMessages.services = {
-    translator: {
-      missingMessageNamespace: "Translation error: The message namespace of \"{{messageId}}\" cannot\nbe resolved.".replace(/\n/, ' '),
-      missingMessage: "Translation error: The translation message \"{{messageId}}\" is\nmissing in its message namespace.".replace(/\n/, ' '),
-      unknownMessageFormat: 'Translation error: Unknown message format for "{{messageId}}".'
-    }
+  if (Meteor.i18nMessages._meteor == null) {
+    Meteor.i18nMessages._meteor = {};
+  }
+
+  Meteor.i18nMessages._meteor.translator = {
+    missingMessageNamespace: "Translation error: The message namespace of \"{{messageId}}\" cannot\nbe resolved.".replace(/\n/, ' '),
+    missingMessage: "Translation error: The translation message \"{{messageId}}\" is\nmissing in its message namespace.".replace(/\n/, ' '),
+    unknownMessageFormat: 'Translation error: Unknown message format for "{{messageId}}".'
   };
 
   root = typeof exports !== "undefined" && exports !== null ? exports : this;

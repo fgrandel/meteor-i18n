@@ -19,11 +19,11 @@ class Meteor._TranslatorService
 
         # Does the message namespace exist?
         unless _.isObject(messages)
-          throw Error 'services.translator.missingMessageNamespace'
+          throw Error '_meteor.translator.missingMessageNamespace'
 
       # Does the message have a translation?
       message = messages[messageId]
-      throw Error 'services.translator.missingMessage' unless message?
+      throw Error '_meteor.translator.missingMessage' unless message?
 
       # Is this a cross-language message?
       return message if _.isString(message)
@@ -42,7 +42,7 @@ class Meteor._TranslatorService
       return message.default if _.isString(message?.default)
 
       # Hm, we have an error in the message structure.
-      throw Error 'services.translator.unknownMessageFormat'
+      throw Error '_meteor.translator.unknownMessageFormat'
 
     # This is the actual service function.
     @translate = (messageId, params = {}) ->
@@ -93,20 +93,20 @@ Meteor._TranslatorService = new Meteor._TranslatorService()
 
 # Public message configuration with system messages.
 Meteor.i18nMessages = {} unless Meteor.i18nMessages?
-Meteor.i18nMessages.services =
-  translator:
-    missingMessageNamespace:
-      """
-      Translation error: The message namespace of "{{messageId}}" cannot
-      be resolved.
-      """.replace /\n/, ' '
-    missingMessage:
-      """
-      Translation error: The translation message "{{messageId}}" is
-      missing in its message namespace.
-      """.replace /\n/, ' '
-    unknownMessageFormat:
-      'Translation error: Unknown message format for "{{messageId}}".'
+Meteor.i18nMessages._meteor = {} unless Meteor.i18nMessages._meteor?
+Meteor.i18nMessages._meteor.translator =
+  missingMessageNamespace:
+    """
+    Translation error: The message namespace of "{{messageId}}" cannot
+    be resolved.
+    """.replace /\n/, ' '
+  missingMessage:
+    """
+    Translation error: The translation message "{{messageId}}" is
+    missing in its message namespace.
+    """.replace /\n/, ' '
+  unknownMessageFormat:
+    'Translation error: Unknown message format for "{{messageId}}".'
 
 
 # Global shortcut for the translation method.
