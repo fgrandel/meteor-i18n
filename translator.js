@@ -96,13 +96,15 @@
 
   Meteor._TranslatorService = new Meteor._TranslatorService();
 
-  Meteor.i18nMessages = {
-    services: {
-      translator: {
-        missingMessageNamespace: "Translation error: The message namespace of \"{{messageId}}\" cannot\nbe resolved.".replace(/\n/, ' '),
-        missingMessage: "Translation error: The translation message \"{{messageId}}\" is\nmissing in its message namespace.".replace(/\n/, ' '),
-        unknownMessageFormat: 'Translation error: Unknown message format for "{{messageId}}".'
-      }
+  if (Meteor.i18nMessages == null) {
+    Meteor.i18nMessages = {};
+  }
+
+  Meteor.i18nMessages.services = {
+    translator: {
+      missingMessageNamespace: "Translation error: The message namespace of \"{{messageId}}\" cannot\nbe resolved.".replace(/\n/, ' '),
+      missingMessage: "Translation error: The translation message \"{{messageId}}\" is\nmissing in its message namespace.".replace(/\n/, ' '),
+      unknownMessageFormat: 'Translation error: Unknown message format for "{{messageId}}".'
     }
   };
 

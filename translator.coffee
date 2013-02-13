@@ -92,21 +92,21 @@ Meteor.getLocale = () ->
 Meteor._TranslatorService = new Meteor._TranslatorService()
 
 # Public message configuration with system messages.
-Meteor.i18nMessages =
-  services:
-    translator:
-      missingMessageNamespace:
-        """
-        Translation error: The message namespace of "{{messageId}}" cannot
-        be resolved.
-        """.replace /\n/, ' '
-      missingMessage:
-        """
-        Translation error: The translation message "{{messageId}}" is
-        missing in its message namespace.
-        """.replace /\n/, ' '
-      unknownMessageFormat:
-        'Translation error: Unknown message format for "{{messageId}}".'
+Meteor.i18nMessages = {} unless Meteor.i18nMessages?
+Meteor.i18nMessages.services =
+  translator:
+    missingMessageNamespace:
+      """
+      Translation error: The message namespace of "{{messageId}}" cannot
+      be resolved.
+      """.replace /\n/, ' '
+    missingMessage:
+      """
+      Translation error: The translation message "{{messageId}}" is
+      missing in its message namespace.
+      """.replace /\n/, ' '
+    unknownMessageFormat:
+      'Translation error: Unknown message format for "{{messageId}}".'
 
 
 # Global shortcut for the translation method.
