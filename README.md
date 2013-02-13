@@ -18,7 +18,7 @@ Usage
 To add messages do:
 
 ``` javascript
-Meteor.i18n.someNamespace = {
+Meteor.i18nMessages.someNamespace = {
   optionalSubNamespace: {  // You can have as many (sub-)sub-namespaces as you like.
     yourMessage: {
       en: {
