@@ -3,10 +3,9 @@ var root;
 
 Meteor._TranslatorService = (function() {
 
-  function _TranslatorService(locale) {
-    var resolveParams, retrieveMessage,
+  function _TranslatorService() {
+    var localLocale, resolveParams, retrieveMessage,
       _this = this;
-    Meteor.setLocale(locale);
     resolveParams = function(message, params) {
       var key, regexp, value;
       for (key in params) {
@@ -17,7 +16,7 @@ Meteor._TranslatorService = (function() {
       return message;
     };
     retrieveMessage = function(messageId) {
-      var language, message, messageParts, messages, territory, _ref;
+      var language, locale, message, messageParts, messages, territory, _ref;
       messageParts = messageId.split('.');
       messageId = messageParts.pop();
       messages = Meteor.i18nMessages;
@@ -34,7 +33,7 @@ Meteor._TranslatorService = (function() {
       if (_.isString(message)) {
         return message;
       }
-      locale = Session.get('_TranslatorService.locale') || '';
+      locale = Session.get('_TranslatorService.locale') || 'en_US';
       _ref = locale.split('_'), language = _ref[0], territory = _ref[1];
       message = message[language];
       if (_.isString(message)) {
@@ -71,6 +70,12 @@ Meteor._TranslatorService = (function() {
         return '###' + messageId + '###';
       }
     };
+    if (Meteor.isClient) {
+      localLocale = window.localStorage.getItem('_TranslatorService.locale');
+      if (localLocale) {
+        Meteor.setLocale(localLocale);
+      }
+    }
   }
 
   return _TranslatorService;
@@ -78,14 +83,17 @@ Meteor._TranslatorService = (function() {
 })();
 
 Meteor.setLocale = function(locale) {
+  if (Meteor.isClient) {
+    window.localStorage.setItem('_TranslatorService.locale', locale);
+  }
   return Session.set('_TranslatorService.locale', locale);
 };
 
-Meteor.getLocale = function(locale) {
+Meteor.getLocale = function() {
   return Session.get('_TranslatorService.locale');
 };
 
-Meteor._TranslatorService = new Meteor._TranslatorService('en_US');
+Meteor._TranslatorService = new Meteor._TranslatorService();
 
 Meteor.i18nMessages = {
   services: {
