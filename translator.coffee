@@ -1,5 +1,7 @@
 class Meteor._TranslatorService
-  constructor: () ->
+  _DEFAULT_LOCALE: 'en_US'
+
+  constructor: ->
 
     resolveParams = (message, params) ->
       for key, value of params
@@ -29,7 +31,7 @@ class Meteor._TranslatorService
       return message if _.isString(message)
 
       # Do we have a language-specific message?
-      locale = Session.get('_TranslatorService.locale') || 'en_US'
+      locale = Session.get('_TranslatorService.locale') || @_DEFAULT_LOCALE
 
       [language, territory] = locale.split('_')
       message = message[language]
@@ -74,6 +76,10 @@ class Meteor._TranslatorService
       localLocale = window.localStorage.getItem '_TranslatorService.locale'
       if localLocale then Meteor.setLocale localLocale
 
+# The translator service is a singleton.
+Meteor._TranslatorService = new Meteor._TranslatorService
+
+
 # Public locale setter.
 Meteor.setLocale = (locale) ->
   if Meteor.isClient
@@ -83,13 +89,9 @@ Meteor.setLocale = (locale) ->
 
 
 # Public locale getter.
-Meteor.getLocale = () ->
+Meteor.getLocale = ->
   Session.get('_TranslatorService.locale')
 
-
-
-# The translator service is a singleton.
-Meteor._TranslatorService = new Meteor._TranslatorService()
 
 # Public message configuration with system messages.
 Meteor.i18nMessages = {} unless Meteor.i18nMessages?
