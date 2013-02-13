@@ -38,6 +38,14 @@ To set the current locale do:
 Meteor.setLocale('en_US');
 ```
 
+and to get the current locale do:
+``` javascript
+Meteor.getLocale(); // en_US
+```
+
+The locale is reactive and also stored in the localStorage (`_TranslatorService.locale`) on the client in order to resist a page reload.
+
+
 To translate a message from within your code simply call:
 
 ``` javascript
