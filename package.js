@@ -5,5 +5,6 @@ Package.describe({
 Package.on_use(function (api, where) {
   where = where || ['client', 'server'];
   api.use(['underscore'], where);
+  api.use('session', 'client');
   api.add_files('translator.js', where);
 });
