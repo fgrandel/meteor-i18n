@@ -67,4 +67,6 @@ Contributions
 
 Contributions are welcome! Just make a pull request and I'll definitely check it out.
 
-Thanks to [@joernroeder](https://github.com/joernroeder) and [@mcevskb](https://github.com/mcevskb) for their contributions.
+Thanks to [@joernroeder](https://github.com/joernroeder),
+[@mcevskb](https://github.com/mcevskb) and [@beshur](https://github.com/beshur)
+for their contributions.
