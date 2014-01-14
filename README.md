@@ -56,6 +56,22 @@ var translatedMessage = __('someNamespace.optionalSubNamespace.yourMessage', {me
 var anotherMessage = __('someNamespace.optionalSubNamespace.anUntranslatedMessage');
 ```
 
+To translate a message inside a template you need to register a helper:
+
+``` javascript
+Handlebars.registerHelper("__i18n", function (string, content) {
+  if (!string) return;
+  var t = __(string, {message: content});
+  return t;
+});
+```
+
+Then you can use it your HTML code:
+
+``` html
+{{__i18n 'someNamespace.optionalSubNamespace.yourMessage' 'some placeholder content'}} 
+```
+
 Questions and Feature Requests
 ------------------------------
 
