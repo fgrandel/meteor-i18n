@@ -22,11 +22,11 @@ Meteor.i18nMessages.someNamespace = {
   optionalSubNamespace: {  // You can have as many (sub-)sub-namespaces as you like.
     yourMessage: {
       en: {
-        US: 'Your {{message}} in American English' // Use {{}} to mark placeholders.
+        US: 'Your {{message}} in American English', // Use {{}} to mark placeholders.
         GB: 'Your {{message}} in British English'
-      }
+      },
       de: 'Your {{message}} in German'  // Territory is optional
-    }
+    },
     anUntranslatedMessage: 'Your untranslated message' // If you don't set a language the same message will be returned for all languages.
   }
 };
