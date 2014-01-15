@@ -114,4 +114,10 @@
 
   root.__ = Meteor._TranslatorService.translate;
 
+  Handlebars.registerHelper("__", function (string, content) {
+    if (!string) return;
+    var t = Meteor._TranslatorService.translate(string, {message: content});
+    return t;
+  });
+
 }).call(this);
