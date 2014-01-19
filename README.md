@@ -56,6 +56,15 @@ var translatedMessage = __('someNamespace.optionalSubNamespace.yourMessage', {me
 var anotherMessage = __('someNamespace.optionalSubNamespace.anUntranslatedMessage');
 ```
 
+To translate a message inside a template there is a global Handlebars
+helper `__`.
+Then you can use it your HTML code:
+
+```
+{{__ 'someNamespace.optionalSubNamespace.yourMessage' 'some placeholder content'}} 
+// Your some placeholder content in American English
+```
+
 Questions and Feature Requests
 ------------------------------
 

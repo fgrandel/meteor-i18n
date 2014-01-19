@@ -114,3 +114,9 @@ Meteor.i18nMessages._meteor.translator =
 # Global shortcut for the translation method.
 root = exports ? this
 root.__ = Meteor._TranslatorService.translate
+
+# Global Handlebars helper
+Handlebars.registerHelper '__', (string, content) ->
+  t = '';
+  t = Meteor._TranslatorService.translate(string, {message: content}) if string
+  return t;
